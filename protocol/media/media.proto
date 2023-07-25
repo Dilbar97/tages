@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package media;
+
+option go_package = "/pb";
+
+import "google/protobuf/timestamp.proto";
+
+service UploadService {
+  rpc Upload(stream UploadRequest) returns (UploadResponse) {}
+  rpc List(ListRequest) returns (ListResponse) {}
+  rpc GetMedia(GetMediaRequest) returns (GetMediaResponse) {}
+}
+
+message UploadRequest {
+  string mime = 1;
+  bytes chunk = 2;
+  string file_path = 3;
+}
+
+message UploadResponse {
+  string name = 1;
+}
+
+message Media {
+  string name = 1;
+  google.protobuf.Timestamp created_at = 2;
+  google.protobuf.Timestamp updated_at = 3;
+}
+
+message ListRequest {
+}
+
+message ListResponse {
+  bool success = 1;
+  repeated Media data = 2;
+  string error = 3;
+}
+
+message GetMediaRequest {
+  string name = 1;
+}
+
+message GetMediaResponse {
+  bool success = 1;
+  Media data = 2;
+  string error = 3;
+}

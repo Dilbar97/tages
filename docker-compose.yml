@@ -1,0 +1,16 @@
+version: '2'
+services:
+  postgres:
+    image: postgres:11
+    volumes:
+      - tages_postgres_database:/var/lib/postgresql/data:Z
+    environment:
+      POSTGRES_USER: tages
+      POSTGRES_PASSWORD: tanos
+      POSTGRES_DB: media
+    ports:
+      - "5434:5432"
+    tty: true
+volumes:
+  tages_postgres_database:
+    external: true

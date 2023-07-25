@@ -1,0 +1,4 @@
+db: postgres://user:pass@localhost:32770/postgres
+grpc_port: 8080
+
+file_location: /files
